@@ -501,50 +501,6 @@ DISTFILES =	.gitignore \
 	cpp/examples/windows/MinOZW/vs2010/MinOZW.sln \
 	cpp/examples/windows/MinOZW/vs2010/MinOZW.vcxproj \
 	cpp/examples/windows/MinOZW/vs2010/MinOZW.vcxproj.filters \
-	cpp/hidapi/AUTHORS.txt \
-	cpp/hidapi/HACKING.txt \
-	cpp/hidapi/LICENSE-bsd.txt \
-	cpp/hidapi/LICENSE-gpl3.txt \
-	cpp/hidapi/LICENSE-orig.txt \
-	cpp/hidapi/LICENSE.txt \
-	cpp/hidapi/Makefile.am \
-	cpp/hidapi/README.txt \
-	cpp/hidapi/bootstrap \
-	cpp/hidapi/configure.ac \
-	cpp/hidapi/doxygen/Doxyfile \
-	cpp/hidapi/hidapi/hidapi.h \
-	cpp/hidapi/libusb/Makefile-manual \
-	cpp/hidapi/libusb/Makefile.am \
-	cpp/hidapi/libusb/Makefile.freebsd \
-	cpp/hidapi/libusb/Makefile.linux \
-	cpp/hidapi/libusb/hid.c \
-	cpp/hidapi/linux/.gitignore \
-	cpp/hidapi/linux/Makefile-manual \
-	cpp/hidapi/linux/Makefile.am \
-	cpp/hidapi/linux/README.txt \
-	cpp/hidapi/linux/hid.c \
-	cpp/hidapi/m4/ax_pthread.m4 \
-	cpp/hidapi/m4/pkg.m4 \
-	cpp/hidapi/mac/.gitignore \
-	cpp/hidapi/mac/Makefile-manual \
-	cpp/hidapi/mac/Makefile.am \
-	cpp/hidapi/mac/hid.c \
-	cpp/hidapi/pc/hidapi-hidraw.pc.in \
-	cpp/hidapi/pc/hidapi-libusb.pc.in \
-	cpp/hidapi/pc/hidapi.pc.in \
-	cpp/hidapi/udev/99-hid.rules \
-	cpp/hidapi/windows/.gitignore \
-	cpp/hidapi/windows/Makefile-manual \
-	cpp/hidapi/windows/Makefile.am \
-	cpp/hidapi/windows/Makefile.mingw \
-	cpp/hidapi/windows/ddk_build/.gitignore \
-	cpp/hidapi/windows/ddk_build/hidapi.def \
-	cpp/hidapi/windows/ddk_build/makefile \
-	cpp/hidapi/windows/ddk_build/sources \
-	cpp/hidapi/windows/hid.cpp \
-	cpp/hidapi/windows/hidapi.sln \
-	cpp/hidapi/windows/hidapi.vcproj \
-	cpp/hidapi/windows/hidtest.vcproj \
 	cpp/src/Bitfield.h \
 	cpp/src/Defs.h \
 	cpp/src/DoxygenMain.h \
@@ -696,8 +652,6 @@ DISTFILES =	.gitignore \
 	cpp/src/platform/Event.h \
 	cpp/src/platform/FileOps.cpp \
 	cpp/src/platform/FileOps.h \
-	cpp/src/platform/HidController.cpp \
-	cpp/src/platform/HidController.h \
 	cpp/src/platform/Log.cpp \
 	cpp/src/platform/Log.h \
 	cpp/src/platform/Mutex.cpp \
@@ -733,8 +687,6 @@ DISTFILES =	.gitignore \
 	cpp/src/platform/winRT/EventImpl.h \
 	cpp/src/platform/winRT/FileOpsImpl.cpp \
 	cpp/src/platform/winRT/FileOpsImpl.h \
-	cpp/src/platform/winRT/HidControllerWinRT.cpp \
-	cpp/src/platform/winRT/HidControllerWinRT.h \
 	cpp/src/platform/winRT/LogImpl.cpp \
 	cpp/src/platform/winRT/LogImpl.h \
 	cpp/src/platform/winRT/MutexImpl.cpp \
