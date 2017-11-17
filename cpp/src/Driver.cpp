@@ -37,11 +37,6 @@
 #include "platform/Event.h"
 #include "platform/Mutex.h"
 #include "platform/SerialController.h"
-#ifdef WINRT
-#include "platform/winRT/HidControllerWinRT.h"
-#else
-#include "platform/HidController.h"
-#endif
 #include "platform/Thread.h"
 #include "platform/Log.h"
 #include "platform/TimeStamp.h"
@@ -223,14 +218,7 @@ m_nonceReportSentAttempt( 0 )
 
 	initNetworkKeys(false);
 
-	if( ControllerInterface_Hid == _interface )
-	{
-		m_controller = new HidController();
-	}
-	else
-	{
-		m_controller = new SerialController();
-	}
+	m_controller = new SerialController();
 	m_controller->SetSignalThreshold( 1 );
 
 	Options::Get()->GetOptionAsBool( "NotifyTransactions", &m_notifytransactions );

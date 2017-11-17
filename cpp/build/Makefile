@@ -66,16 +66,7 @@ CFLAGS  += $(CPPFLAGS)
 #where to put the temporary library
 LIBDIR	?= $(top_builddir)
 
-INCLUDES	:= -I $(top_srcdir)/cpp/src -I $(top_srcdir)/cpp/tinyxml/ -I $(top_srcdir)/cpp/hidapi/hidapi/
-
-ifeq ($(UNAME),Darwin)
-SOURCES_HIDAPI =$(top_srcdir)/cpp/hidapi/mac
-else ifeq ($(UNAME),FreeBSD)
-SOURCES_HIDAPI =$(top_srcdir)/cpp/hidapi/libusb
-else
-SOURCES_HIDAPI =$(top_srcdir)/cpp/hidapi/linux
-endif
-
+INCLUDES	:= -I $(top_srcdir)/cpp/src -I $(top_srcdir)/cpp/tinyxml/
 
 SOURCES		:= $(top_srcdir)/cpp/src $(top_srcdir)/cpp/src/command_classes $(top_srcdir)/cpp/tinyxml \
 	$(top_srcdir)/cpp/src/value_classes $(top_srcdir)/cpp/src/platform $(top_srcdir)/cpp/src/platform/unix $(SOURCES_HIDAPI) $(top_srcdir)/cpp/src/aes/
@@ -84,14 +75,6 @@ VPATH = $(top_srcdir)/cpp/src:$(top_srcdir)/cpp/src/command_classes:$(top_srcdir
 	
 
 tinyxml := $(notdir $(wildcard $(top_srcdir)/cpp/tinyxml/*.cpp))
-
-ifeq ($(UNAME),Darwin)
-hidapi := $(notdir $(wildcard $(top_srcdir)/cpp/hidapi/mac/*.c))
-else ifeq ($(UNAME),FreeBSD)
-hidapi := $(notdir $(wildcard $(top_srcdir)/cpp/hidapi/libusb/*.c))
-else
-hidapi := $(notdir $(wildcard $(top_srcdir)/cpp/hidapi/linux/*.c)) # we do not want the libusb version
-endif
 
 ifeq ($(BITBAKE_ENV),1)
 ar_option := "rc"
@@ -115,7 +98,6 @@ printversion:
 
 
 -include $(patsubst %.cpp,$(DEPDIR)/%.d,$(tinyxml))
--include $(patsubst %.c,$(DEPDIR)/%.d,$(hidapi))
 -include $(patsubst %.cpp,$(DEPDIR)/%.d,$(cclasses))
 -include $(patsubst %.cpp,$(DEPDIR)/%.d,$(vclasses))
 -include $(patsubst %.cpp,$(DEPDIR)/%.d,$(pform))
@@ -135,7 +117,6 @@ $(top_srcdir)/cpp/src/vers.cpp:
 #$(OBJDIR)/vers.o:	$(top_builddir)/vers.cpp
 
 $(LIBDIR)/$(SHARED_LIB_NAME):	$(patsubst %.cpp,$(OBJDIR)/%.o,$(tinyxml)) \
-			$(patsubst %.c,$(OBJDIR)/%.o,$(hidapi)) \
 			$(patsubst %.c,$(OBJDIR)/%.o,$(aes)) \
 			$(patsubst %.cpp,$(OBJDIR)/%.o,$(cclasses)) \
 			$(patsubst %.cpp,$(OBJDIR)/%.o,$(vclasses)) \
