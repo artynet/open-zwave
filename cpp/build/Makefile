@@ -59,7 +59,7 @@ endif
 
 else
 LDFLAGS += -shared -Wl,-soname,$(SHARED_LIB_NAME)
-LIBS 	+= -ludev
+LIBS 	+=
 endif
 CFLAGS  += $(CPPFLAGS)
 
