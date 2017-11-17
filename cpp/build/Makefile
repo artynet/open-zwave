@@ -219,15 +219,8 @@ $(top_builddir)/Doxyfile: $(top_srcdir)/docs/Doxyfile.in $(top_srcdir)/cpp/src/v
 		-e 's|[@]VERSION@|$(VERSION).$(VERSION_REV)|g' \
 		< "$<" > "$@"
 
-ifeq ($(DOXYGEN),)
 doc:
 		$(warning Documentation not being built)
-else
-doc: $(top_builddir)/Doxyfile
-	@echo "Creating Documentation at $(top_builddir)/docs/api/"
-	@mkdir -p $(top_builddir)/docs/api/
-	@cd $(top_builddir); $(DOXYGEN)
-endif
 
 install: $(LIBDIR)/$(SHARED_LIB_NAME) doc $(top_builddir)/libopenzwave.pc $(top_builddir)/ozw_config
 	@echo "Installing Shared Library"
