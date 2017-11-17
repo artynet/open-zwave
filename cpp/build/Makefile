@@ -15,7 +15,7 @@
 # what flags we will use for compiling in debug mode
 DEBUG_CFLAGS    := -Wall -Wno-unknown-pragmas -Wno-inline -Wno-format -Werror -Wno-error=sequence-point -Wno-sequence-point -ggdb -DDEBUG -fPIC  -DSYSCONFDIR="\"$(PREFIX)/etc/openzwave/\""
 # what flags we will use for compiling in release mode
-RELEASE_CFLAGS  := -Wall -Wno-unknown-pragmas -Werror -Wno-format -Wno-error=sequence-point -Wno-sequence-point -O3 -DNDEBUG -fPIC  -DSYSCONFDIR="\"$(PREFIX)/etc/openzwave/\""
+RELEASE_CFLAGS  := -Wall -Wno-unknown-pragmas -Werror -Wno-format -Wno-error=sequence-point -Wno-sequence-point -O3 -DNDEBUG -fPIC  -DSYSCONFDIR="\"/etc/openzwave/\""
 #what flags we will use for linking in debug mode
 DEBUG_LDFLAGS	:= -g
 
@@ -105,10 +105,10 @@ indep := $(notdir $(filter-out $(top_srcdir)/cpp/src/vers.cpp, $(wildcard $(top_
 aes := $(notdir $(wildcard $(top_srcdir)/cpp/src/aes/*.c))
 
 
-default: printversion $(LIBDIR)/libopenzwave.a $(LIBDIR)/$(SHARED_LIB_NAME) $(top_builddir)/ozw_config
+default: printversion $(LIBDIR)/$(SHARED_LIB_NAME) $(top_builddir)/ozw_config
 
 clean:
-	@rm -rf $(DEPDIR) $(OBJDIR) $(LIBDIR)/libopenzwave.so* $(LIBDIR)/libopenzwave*.dylib $(LIBDIR)/libopenzwave.a $(top_builddir)/libopenzwave.pc $(top_builddir)/docs/api $(top_builddir)/Doxyfile $(top_srcdir)/cpp/src/vers.cpp
+	@rm -rf $(DEPDIR) $(OBJDIR) $(LIBDIR)/libopenzwave.so* $(LIBDIR)/libopenzwave*.dylib $(top_builddir)/libopenzwave.pc $(top_builddir)/docs/api $(top_builddir)/Doxyfile $(top_srcdir)/cpp/src/vers.cpp
 
 printversion:
 	@echo "Building OpenZWave Version $(GITVERSION)"	
@@ -133,18 +133,6 @@ $(top_srcdir)/cpp/src/vers.cpp:
 	
 
 #$(OBJDIR)/vers.o:	$(top_builddir)/vers.cpp
-
-$(LIBDIR)/libopenzwave.a:	$(patsubst %.cpp,$(OBJDIR)/%.o,$(tinyxml)) \
-			$(patsubst %.c,$(OBJDIR)/%.o,$(hidapi)) \
-			$(patsubst %.c,$(OBJDIR)/%.o,$(aes)) \
-			$(patsubst %.cpp,$(OBJDIR)/%.o,$(cclasses)) \
-			$(patsubst %.cpp,$(OBJDIR)/%.o,$(vclasses)) \
-			$(patsubst %.cpp,$(OBJDIR)/%.o,$(pform)) \
-			$(patsubst %.cpp,$(OBJDIR)/%.o,$(indep)) \
-			$(OBJDIR)/vers.o
-	@echo "Linking Static Library"
-	@$(AR) $(ar_option) $@ $+
-	@$(RANLIB) $@
 
 $(LIBDIR)/$(SHARED_LIB_NAME):	$(patsubst %.cpp,$(OBJDIR)/%.o,$(tinyxml)) \
 			$(patsubst %.c,$(OBJDIR)/%.o,$(hidapi)) \
